@@ -6,9 +6,11 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
 const contactRoutes = require('./routes/contact');
+const path = require('path'); // changed: add path for static serving
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0'; // changed: bind to 0.0.0.0 by default
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Security & parsing
@@ -32,6 +34,25 @@ app.use('/api/contact', contactRoutes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
 
+// changed: serve a frontend build directory if provided (set FRONTEND_BUILD_DIR env to e.g. ../frontend/build)
+const FRONTEND_BUILD_DIR = process.env.FRONTEND_BUILD_DIR;
+if (FRONTEND_BUILD_DIR) {
+  const buildPath = path.join(__dirname, FRONTEND_BUILD_DIR);
+  app.use(express.static(buildPath));
+  // fallback to index.html for SPA routes
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api/') || req.path === '/health') return next();
+    res.sendFile(path.join(buildPath, 'index.html'), err => {
+      if (err) next(err);
+    });
+  });
+} else {
+  // changed: ensure GET / responds to avoid "Cannot GET /"
+  app.get('/', (req, res) => {
+    res.json({ service: 'MyInsight.info backend', status: 'running', env: NODE_ENV });
+  });
+}
+
 // Optional: avoid mongoose deprecation warnings for strictQuery if you want explicit behavior
 // mongoose.set('strictQuery', true); // or false, depending on your preference
 
@@ -43,8 +64,8 @@ if (!MONGO_URI) {
 
 // Start the Express server
 function startServer() {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT} (${NODE_ENV})`);
+  app.listen(PORT, HOST, () => {
+    console.log(`🚀 Server running on http://${HOST}:${PORT} (${NODE_ENV})`);
   });
 }
 
