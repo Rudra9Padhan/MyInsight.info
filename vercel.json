@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "Myinsight.info/package.json",
+            "use": "@vercel/static-build",
+            "config": { "distDir": "dist" }
+        },
+        {
+            "src": "backend/api/**/*.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        { "src": "/api/(.*)", "dest": "/backend/api/$1.js" },
+        { "handle": "filesystem" },
+        { "src": "/(.*)", "dest": "/Myinsight.info/dist/index.html" }
+    ]
+}
