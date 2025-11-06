@@ -1,6 +1,3 @@
-I tried to open the link you gave (https://my-insight-info-sjf4.vercel.app/) and searched the web for a README at that URL, but the deployed site itself doesn’t expose a repository README. I can’t fetch a repo’s README from the deployed Vercel URL alone.
-
-Here’s what I did and what I recommend next:
 
 What I did
 - I looked up the URL to find whether a README file was directly reachable from the site or a public repository link. The deployed site is a running app, not a direct view of the repository README.md, so I couldn’t retrieve the README contents from the site alone.
