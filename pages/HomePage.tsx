@@ -138,7 +138,7 @@ const HeroSection: React.FC = () => {
         };
     }, [theme]);
     
-    const fullTextForAria = "Turning Data into Decisions, and Ideas into Impact.";
+    const fullTextForAria = "Turning Data into Decisions and Ideas into Impact.";
 
     return (
         <section className="relative bg-gray-50 dark:bg-gray-900 overflow-hidden h-[60vh] md:h-[80vh] lg:h-screen min-h-[600px] flex items-center justify-center">
