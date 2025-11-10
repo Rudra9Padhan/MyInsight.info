@@ -148,7 +148,7 @@ const HeroSection: React.FC = () => {
                     className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight"
                     aria-label={fullTextForAria}
                 >
-                    Turning <span className="text-blue-500">Data into Decisions</span>,
+                    Turning <span className="text-blue-500">Data into Decisions</span>
                     <br />
                     and <span className="text-green-500">Ideas into Impact</span>.
                 </h1>
@@ -233,10 +233,6 @@ const TestimonialsSection: React.FC = () => {
     return (
         <section className="py-20 bg-gray-50 dark:bg-gray-900">
             <div className="container mx-auto px-6">
-                <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-12">What Our Clients Say</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                    {testimonials.map((t, i) => <TestimonialCard key={i} testimonial={t} />)}
-                </div>
             </div>
         </section>
     );
