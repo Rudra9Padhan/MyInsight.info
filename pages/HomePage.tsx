@@ -228,11 +228,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
 
 
 const TestimonialsSection: React.FC = () => {
-    const testimonials: Testimonial[] = [
-        { quote: "Insight Analytics's data insights were a game-changer for our marketing strategy. We saw a 40% increase in qualified leads within three months.", author: 'Jane Doe', company: 'CEO, TechSolutions' },
-        { quote: "The new website they built is not only beautiful but also incredibly fast. Our user engagement has skyrocketed.", author: 'John Smith', company: 'Founder, Creative Co.' },
-        { quote: "Their team handled our social media with such professionalism and creativity. Our online presence has never been stronger.", author: 'Emily White', company: 'Marketing Director, Innovate Inc.' },
-    ];
+    const testimonials: Testimonial[] = [];
 
     return (
         <section className="py-20 bg-gray-50 dark:bg-gray-900">
